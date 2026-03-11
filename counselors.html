@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全部心理咨询师 - 心灵驿站</title>
+    <link rel="stylesheet" href="counselors.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>心灵驿站</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html">首页</a>
+                <a href="counselors.html" class="active">心理咨询师</a>
+                <a href="articles.html">心理科普</a>
+                <a href="consultation.html">在线咨询</a>
+                <a href="profile.html">个人中心</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h2>全部心理咨询师</h2>
+                <p>专业的心理咨询师团队，为您提供贴心的心理服务</p>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-group">
+                    <span class="filter-label">擅长领域：</span>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-category="全部" onclick="filterCounselors(this, 'category')">全部</button>
+                        <button class="filter-btn" data-category="情绪管理" onclick="filterCounselors(this, 'category')">情绪管理</button>
+                        <button class="filter-btn" data-category="人际关系" onclick="filterCounselors(this, 'category')">人际关系</button>
+                        <button class="filter-btn" data-category="婚姻家庭" onclick="filterCounselors(this, 'category')">婚姻家庭</button>
+                        <button class="filter-btn" data-category="职场压力" onclick="filterCounselors(this, 'category')">职场压力</button>
+                        <button class="filter-btn" data-category="青少年心理" onclick="filterCounselors(this, 'category')">青少年心理</button>
+                        <button class="filter-btn" data-category="焦虑抑郁" onclick="filterCounselors(this, 'category')">焦虑抑郁</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">咨询方式：</span>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-method="全部" onclick="filterCounselors(this, 'method')">全部</button>
+                        <button class="filter-btn" data-method="视频咨询" onclick="filterCounselors(this, 'method')">视频咨询</button>
+                        <button class="filter-btn" data-method="语音咨询" onclick="filterCounselors(this, 'method')">语音咨询</button>
+                        <button class="filter-btn" data-method="文字咨询" onclick="filterCounselors(this, 'method')">文字咨询</button>
+                        <button class="filter-btn" data-method="面对面" onclick="filterCounselors(this, 'method')">面对面</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-result" id="filterResult">
+                <p>共 <span id="counselorCount">64</span> 位心理咨询师</p>
+            </div>
+
+            <div class="counselor-grid">
+                <div class="counselor-card" data-methods="视频咨询,语音咨询,面对面">
+                    <div class="counselor-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Li+Minghua&background=4A90E2&color=fff&size=120" alt="李医生">
+                        <span class="status online">在线</span>
+                    </div>
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">李明华 <span class="title">主任医师</span></h3>
+                        <p class="counselor-exp">从业15年 | 3000+咨询时长</p>
+                        <div class="counselor-tags">
+                            <span class="tag">情绪管理</span>
+                            <span class="tag">焦虑抑郁</span>
+                            <span class="tag">职场压力</span>
+                        </div>
+                        <div class="counselor-methods">
+                            <span class="method-tag">视频咨询</span>
+                            <span class="method-tag">语音咨询</span>
+                            <span class="method-tag">面对面</span>
+                        </div>
+                        <p class="counselor-desc">擅长认知行为疗法，帮助来访者解决情绪困扰、职场压力等问题，咨询风格温和而专业。</p>
+                        <div class="counselor-footer">
+                            <span class="rating">⭐ 4.9分</span>
+                            <span class="price">¥500/小时</span>
+                            <button class="btn-book">立即预约</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="counselor-card" data-methods="视频咨询,文字咨询,面对面">
+                    <div class="counselor-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Wang+Xuemei&background=E85D75&color=fff&size=120" alt="王医生">
+                        <span class="status offline">离线</span>
+                    </div>
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">王雪梅 <span class="title">副主任医师</span></h3>
+                        <p class="counselor-exp">从业12年 | 2500+咨询时长</p>
+                        <div class="counselor-tags">
+                            <span class="tag">婚姻家庭</span>
+                            <span class="tag">人际关系</span>
+                            <span class="tag">亲子教育</span>
+                        </div>
+                        <div class="counselor-methods">
+                            <span class="method-tag">视频咨询</span>
+                            <span class="method-tag">文字咨询</span>
+                            <span class="method-tag">面对面</span>
+                        </div>
+                        <p class="counselor-desc">专注于婚姻家庭咨询和人际关系改善，运用系统式家庭治疗方法，帮助家庭重建和谐关系。</p>
+                        <div class="counselor-footer">
+                            <span class="rating">⭐ 4.8分</span>
+                            <span class="price">¥400/小时</span>
+                            <button class="btn-book">立即预约</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="counselor-card" data-methods="视频咨询,语音咨询,文字咨询">
+                    <div class="counselor-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Zhang+Wei&background=50C878&color=fff&size=120" alt="张医生">
+                        <span class="status online">在线</span>
+                    </div>
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">张伟 <span class="title">国家二级心理咨询师</span></h3>
+                        <p class="counselor-exp">从业8年 | 1800+咨询时长</p>
+                        <div class="counselor-tags">
+                            <span class="tag">青少年心理</span>
+                            <span class="tag">学业压力</span>
+                            <span class="tag">情绪管理</span>
+                        </div>
+                        <div class="counselor-methods">
+                            <span class="method-tag">视频咨询</span>
+                            <span class="method-tag">语音咨询</span>
+                            <span class="method-tag">文字咨询</span>
+                        </div>
+                        <p class="counselor-desc">专注于青少年心理健康，擅长处理学业压力、青春期困惑等问题，深受学生和家长信赖。</p>
+                        <div class="counselor-footer">
+                            <span class="rating">⭐ 4.9分</span>
+                            <span class="price">¥350/小时</span>
+                            <button class="btn-book">立即预约</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="counselor-card" data-methods="视频咨询,面对面">
+                    <div class="counselor-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Chen+Jing&background=9B59B6&color=fff&size=120" alt="陈医生">
+                        <span class="status online">在线</span>
+                    </div>
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">陈静 <span class="title">注册心理师</span></h3>
+                        <p class="counselor-exp">从业10年 | 2200+咨询时长</p>
+                        <div class="counselor-tags">
+                            <span class="tag">焦虑抑郁</span>
+                            <span class="tag">创伤疗愈</span>
+                            <span class="tag">个人成长</span>
+                        </div>
+                        <div class="counselor-methods">
+                            <span class="method-tag">视频咨询</span>
+                            <span class="method-tag">面对面</span>
+                        </div>
+                        <p class="counselor-desc">擅长运用精神分析和心理动力学方法，帮助来访者深入探索内心世界，实现个人成长。</p>
+                        <div class="counselor-footer">
+                            <span class="rating">⭐ 4.9分</span>
+                            <span class="price">¥450/小时</span>
+                            <button class="btn-book">立即预约</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="counselor-card" data-methods="语音咨询,文字咨询">
+                    <div class="counselor-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Liu+Yang&background=F39C12&color=fff&size=120" alt="刘医生">
+                        <span class="status busy">忙碌</span>
+                    </div>
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">刘洋 <span class="title">心理咨询师</span></h3>
+                        <p class="counselor-exp">从业6年 | 1200+咨询时长</p>
+                        <div class="counselor-tags">
+                            <span class="tag">职场压力</span>
+                            <span class="tag">职业规划</span>
+                            <span class="tag">人际关系</span>
+                        </div>
+                        <div class="counselor-methods">
+                            <span class="method-tag">语音咨询</span>
+                            <span class="method-tag">文字咨询</span>
+                        </div>
+                        <p class="counselor-desc">专注于职场心理健康，帮助来访者应对工作压力、职业倦怠，实现职业发展与心理健康的平衡。</p>
+                        <div class="counselor-footer">
+                            <span class="rating">⭐ 4.7分</span>
+                            <span class="price">¥300/小时</span>
+                            <button class="btn-book">立即预约</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="counselor-card">
+                    <div class="counselor-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Zhao+Xiaoyan&background=1ABC9C&color=fff&size=120" alt="赵医生">
+                        <span class="status online">在线</span>
+                    </div>
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">赵晓燕 <span class="title">高级心理咨询师</span></h3>
+                        <p class="counselor-exp">从业14年 | 2800+咨询时长</p>
+                        <div class="counselor-tags">
+                            <span class="tag">婚姻家庭</span>
+                            <span class="tag">情感问题</span>
+                            <span class="tag">女性成长</span>
+                        </div>
+                        <p class="counselor-desc">专注于女性心理健康和情感问题，帮助女性建立自信，改善亲密关系，实现自我价值的提升。</p>
+                        <div class="counselor-footer">
+                            <span class="rating">⭐ 4.8分</span>
+                            <span class="price">¥420/小时</span>
+                            <button class="btn-book">立即预约</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="counselor-card">
+                    <div class="counselor-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Sun+Jianguo&background=E74C3C&color=fff&size=120" alt="孙医生">
+                        <span class="status offline">离线</span>
+                    </div>
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">孙建国 <span class="title">心理治疗师</span></h3>
+                        <p class="counselor-exp">从业20年 | 4000+咨询时长</p>
+                        <div class="counselor-tags">
+                            <span class="tag">焦虑抑郁</span>
+                            <span class="tag">睡眠障碍</span>
+                            <span class="tag">心身疾病</span>
+                        </div>
+                        <p class="counselor-desc">医学心理学背景，擅长心身疾病的综合治疗，将医学与心理学相结合，提供全面的心理健康服务。</p>
+                        <div class="counselor-footer">
+                            <span class="rating">⭐ 5.0分</span>
+                            <span class="price">¥600/小时</span>
+                            <button class="btn-book">立即预约</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="counselor-card">
+                    <div class="counselor-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Zhou+Yuqing&background=3498DB&color=fff&size=120" alt="周医生">
+                        <span class="status online">在线</span>
+                    </div>
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">周雨晴 <span class="title">心理咨询师</span></h3>
+                        <p class="counselor-exp">从业5年 | 900+咨询时长</p>
+                        <div class="counselor-tags">
+                            <span class="tag">情绪管理</span>
+                            <span class="tag">正念减压</span>
+                            <span class="tag">个人成长</span>
+                        </div>
+                        <p class="counselor-desc">擅长正念减压和情绪调节技术，帮助来访者建立健康的情绪管理方式，提升生活质量。</p>
+                        <div class="counselor-footer">
+                            <span class="rating">⭐ 4.8分</span>
+                            <span class="price">¥280/小时</span>
+                            <button class="btn-book">立即预约</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination" id="pagination">
+                <button class="page-btn prev" onclick="changePage('prev')">← 上一页</button>
+                <div class="page-numbers" id="pageNumbers">
+                    <button class="page-btn active" onclick="changePage(1)">1</button>
+                    <button class="page-btn" onclick="changePage(2)">2</button>
+                    <button class="page-btn" onclick="changePage(3)">3</button>
+                    <span class="page-ellipsis" onclick="toggleExpandPages()" title="点击查看更多">...</span>
+                    <button class="page-btn" onclick="changePage(8)">8</button>
+                </div>
+                <button class="page-btn next" onclick="changePage('next')">下一页 →</button>
+                <span class="page-info" id="pageInfo">共 8 页，64 位咨询师</span>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 模拟多页数据
+        const counselorsData = {
+            1: [
+                { name: '李明华', title: '主任医师', exp: '从业15年 | 3000+咨询时长', tags: ['情绪管理', '焦虑抑郁', '职场压力'], desc: '擅长认知行为疗法，帮助来访者解决情绪困扰、职场压力等问题，咨询风格温和而专业。', rating: '4.9', price: '500', status: 'online', color: '4A90E2' },
+                { name: '王雪梅', title: '副主任医师', exp: '从业12年 | 2500+咨询时长', tags: ['婚姻家庭', '人际关系', '亲子教育'], desc: '专注于婚姻家庭咨询和人际关系改善，运用系统式家庭治疗方法，帮助家庭重建和谐关系。', rating: '4.8', price: '400', status: 'offline', color: 'E85D75' },
+                { name: '张伟', title: '国家二级心理咨询师', exp: '从业8年 | 1800+咨询时长', tags: ['青少年心理', '学业压力', '情绪管理'], desc: '专注于青少年心理健康，擅长处理学业压力、青春期困惑等问题，深受学生和家长信赖。', rating: '4.9', price: '350', status: 'online', color: '50C878' },
+                { name: '陈静', title: '注册心理师', exp: '从业10年 | 2200+咨询时长', tags: ['焦虑抑郁', '创伤疗愈', '个人成长'], desc: '擅长运用精神分析和心理动力学方法，帮助来访者深入探索内心世界，实现个人成长。', rating: '4.9', price: '450', status: 'online', color: '9B59B6' },
+                { name: '刘洋', title: '心理咨询师', exp: '从业6年 | 1200+咨询时长', tags: ['职场压力', '职业规划', '人际关系'], desc: '专注于职场心理健康，帮助来访者应对工作压力、职业倦怠，实现职业发展与心理健康的平衡。', rating: '4.7', price: '300', status: 'busy', color: 'F39C12' },
+                { name: '赵晓燕', title: '高级心理咨询师', exp: '从业14年 | 2800+咨询时长', tags: ['婚姻家庭', '情感问题', '女性成长'], desc: '专注于女性心理健康和情感问题，帮助女性建立自信，改善亲密关系，实现自我价值的提升。', rating: '4.8', price: '420', status: 'online', color: '1ABC9C' },
+                { name: '孙建国', title: '心理治疗师', exp: '从业20年 | 4000+咨询时长', tags: ['焦虑抑郁', '睡眠障碍', '心身疾病'], desc: '医学心理学背景，擅长心身疾病的综合治疗，将医学与心理学相结合，提供全面的心理健康服务。', rating: '5.0', price: '600', status: 'offline', color: 'E74C3C' },
+                { name: '周雨晴', title: '心理咨询师', exp: '从业5年 | 900+咨询时长', tags: ['情绪管理', '正念减压', '个人成长'], desc: '擅长正念减压和情绪调节技术，帮助来访者建立健康的情绪管理方式，提升生活质量。', rating: '4.8', price: '280', status: 'online', color: '3498DB' }
+            ],
+            2: [
+                { name: '吴文静', title: '注册心理师', exp: '从业11年 | 2600+咨询时长', tags: ['婚姻家庭', '情感修复', '离婚调适'], desc: '专注于婚姻危机干预和情感修复，帮助夫妻重建信任，改善沟通模式。', rating: '4.9', price: '480', status: 'online', color: 'FF6B9D' },
+                { name: '郑浩然', title: '高级心理咨询师', exp: '从业9年 | 2100+咨询时长', tags: ['青少年心理', '网络成瘾', '学习动力'], desc: '擅长青少年网络成瘾干预和学习动力激发，帮助家长建立有效的亲子沟通方式。', rating: '4.8', price: '380', status: 'online', color: '4ECDC4' },
+                { name: '林思远', title: '心理治疗师', exp: '从业16年 | 3500+咨询时长', tags: ['抑郁症', '焦虑症', '强迫症'], desc: '临床心理学博士，擅长各类神经症的诊断与治疗，采用整合式治疗方法。', rating: '5.0', price: '550', status: 'offline', color: '9B59B6' },
+                { name: '黄雅婷', title: '心理咨询师', exp: '从业7年 | 1500+咨询时长', tags: ['职场发展', '领导力', '团队建设'], desc: '企业EAP顾问，专注于职场发展和领导力提升，帮助职场人士突破职业瓶颈。', rating: '4.7', price: '360', status: 'online', color: 'E67E22' },
+                { name: '谢明辉', title: '副主任医师', exp: '从业18年 | 3800+咨询时长', tags: ['创伤治疗', 'PTSD', '危机干预'], desc: '创伤治疗专家，擅长PTSD治疗和危机心理干预，参与多次重大事件心理救援。', rating: '4.9', price: '520', status: 'busy', color: 'C0392B' },
+                { name: '马晓琳', title: '国家二级心理咨询师', exp: '从业10年 | 2300+咨询时长', tags: ['亲子关系', '儿童心理', '多动症'], desc: '儿童心理专家，专注于儿童情绪行为问题和多动症的评估与干预。', rating: '4.8', price: '400', status: 'online', color: '16A085' },
+                { name: '杨志华', title: '心理咨询师', exp: '从业13年 | 2900+咨询时长', tags: ['老年心理', '临终关怀', '丧亲辅导'], desc: '老年心理专家，关注老年人心理健康和生命质量，提供专业的临终关怀服务。', rating: '4.9', price: '450', status: 'online', color: '8E44AD' },
+                { name: '朱美玲', title: '注册心理师', exp: '从业8年 | 1700+咨询时长', tags: ['饮食障碍', '体像障碍', '自尊提升'], desc: '专注于饮食障碍和体像问题治疗，帮助来访者建立健康的身体意象和自尊。', rating: '4.7', price: '380', status: 'offline', color: 'D35400' }
+            ],
+            3: [
+                { name: '许建国', title: '主任医师', exp: '从业22年 | 4500+咨询时长', tags: ['精神分裂症', '双相障碍', '严重精神障碍'], desc: '精神科主任医师，擅长严重精神障碍的诊断治疗和康复指导。', rating: '5.0', price: '600', status: 'online', color: '2C3E50' },
+                { name: '何晓燕', title: '高级心理咨询师', exp: '从业12年 | 2700+咨询时长', tags: ['情感咨询', '恋爱指导', '失恋修复'], desc: '情感咨询专家，帮助单身人士提升恋爱能力，指导情侣改善关系质量。', rating: '4.8', price: '420', status: 'online', color: 'E91E63' },
+                { name: '罗文斌', title: '心理咨询师', exp: '从业6年 | 1100+咨询时长', tags: ['运动心理', '竞技状态', '心理韧性'], desc: '运动心理学硕士，为运动员提供心理训练，提升竞技表现和心理韧性。', rating: '4.6', price: '320', status: 'online', color: '27AE60' },
+                { name: '梁晓峰', title: '注册心理师', exp: '从业14年 | 3100+咨询时长', tags: ['成瘾治疗', '戒酒戒毒', '行为成瘾'], desc: '成瘾治疗专家，采用动机式访谈和认知行为疗法帮助成瘾者康复。', rating: '4.9', price: '480', status: 'busy', color: 'C0392B' },
+                { name: '宋佳怡', title: '心理咨询师', exp: '从业5年 | 800+咨询时长', tags: ['艺术治疗', '表达性艺术', '创造力'], desc: '艺术治疗师，通过绘画、音乐等艺术形式帮助来访者表达情感和促进疗愈。', rating: '4.7', price: '300', status: 'online', color: '9C27B0' },
+                { name: '唐志强', title: '副主任医师', exp: '从业17年 | 3600+咨询时长', tags: ['睡眠医学', '失眠治疗', '睡眠卫生'], desc: '睡眠医学专家，专注于失眠的认知行为治疗和睡眠卫生教育。', rating: '4.9', price: '500', status: 'offline', color: '34495E' },
+                { name: '韩梅梅', title: '国家二级心理咨询师', exp: '从业9年 | 1900+咨询时长', tags: ['孕期心理', '产后抑郁', '母婴关系'], desc: '围产期心理专家，关注孕产妇心理健康，预防和治疗产后抑郁。', rating: '4.8', price: '400', status: 'online', color: 'FF5722' },
+                { name: '冯晓东', title: '心理咨询师', exp: '从业11年 | 2400+咨询时长', tags: ['LGBTQ+', '性别认同', '出柜辅导'], desc: 'LGBTQ+友善咨询师，为性少数群体提供专业的身份认同和出柜支持服务。', rating: '4.9', price: '450', status: 'online', color: '673AB7' }
+            ]
+        };
+
+        // 补充第4-8页的数据（复制前几页并修改名字）
+        for (let i = 4; i <= 8; i++) {
+            counselorsData[i] = counselorsData[1].map(c => ({
+                ...c,
+                name: c.name + '（' + i + '）',
+                rating: (Math.random() * 0.5 + 4.5).toFixed(1)
+            }));
+        }
+
+        let currentPage = 1;
+        const totalPages = 8;
+
+        function changePage(page) {
+            if (page === 'prev') {
+                if (currentPage > 1) {
+                    currentPage--;
+                } else {
+                    return;
+                }
+            } else if (page === 'next') {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                } else {
+                    return;
+                }
+            } else {
+                currentPage = page;
+            }
+
+            updatePageButtons();
+            renderCounselors();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updatePageButtons() {
+            const buttons = document.querySelectorAll('.pagination .page-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                const pageNum = parseInt(btn.textContent);
+                if (pageNum === currentPage) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // 更新上一页/下一页按钮状态
+            const prevBtn = document.querySelector('.page-btn.prev');
+            const nextBtn = document.querySelector('.page-btn.next');
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+
+            // 更新页码信息显示
+            document.querySelector('.page-info').textContent = `第 ${currentPage} / ${totalPages} 页，共 64 位咨询师`;
+        }
+
+        function renderCounselors() {
+            const grid = document.querySelector('.counselor-grid');
+            const data = counselorsData[currentPage] || counselorsData[1];
+            
+            grid.innerHTML = data.map(counselor => `
+                <div class="counselor-card">
+                    <div class="counselor-avatar">
+                        <img src="https://ui-avatars.com/api/?name=${counselor.name.charAt(0)}&background=${counselor.color}&color=fff&size=120" alt="${counselor.name}">
+                        <span class="status ${counselor.status}">${counselor.status === 'online' ? '在线' : counselor.status === 'busy' ? '忙碌' : '离线'}</span>
+                    </div>
+                    <div class="counselor-info">
+                        <h3 class="counselor-name">${counselor.name} <span class="title">${counselor.title}</span></h3>
+                        <p class="counselor-exp">${counselor.exp}</p>
+                        <div class="counselor-tags">
+                            ${counselor.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                        <p class="counselor-desc">${counselor.desc}</p>
+                        <div class="counselor-footer">
+                            <span class="rating">⭐ ${counselor.rating}分</span>
+                            <span class="price">¥${counselor.price}/小时</span>
+                            <button class="btn-book">立即预约</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        let isExpanded = false;
+
+        function toggleExpandPages() {
+            isExpanded = !isExpanded;
+            renderPageNumbers();
+        }
+
+        function renderPageNumbers() {
+            const container = document.getElementById('pageNumbers');
+            
+            if (isExpanded) {
+                // 展开显示所有页码
+                let html = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+                }
+                container.innerHTML = html;
+            } else {
+                // 折叠显示简化页码
+                let html = '';
+                
+                if (currentPage <= 4) {
+                    // 当前页在前半部分
+                    for (let i = 1; i <= Math.min(4, totalPages); i++) {
+                        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+                    }
+                    html += `<span class="page-ellipsis" onclick="toggleExpandPages()" title="点击查看更多">...</span>`;
+                    html += `<button class="page-btn ${totalPages === currentPage ? 'active' : ''}" onclick="changePage(${totalPages})">${totalPages}</button>`;
+                } else if (currentPage >= totalPages - 3) {
+                    // 当前页在后半部分
+                    html += `<button class="page-btn ${1 === currentPage ? 'active' : ''}" onclick="changePage(1)">1</button>`;
+                    html += `<span class="page-ellipsis" onclick="toggleExpandPages()" title="点击查看更多">...</span>`;
+                    for (let i = totalPages - 3; i <= totalPages; i++) {
+                        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+                    }
+                } else {
+                    // 当前页在中间
+                    html += `<button class="page-btn" onclick="changePage(1)">1</button>`;
+                    html += `<span class="page-ellipsis" onclick="toggleExpandPages()" title="点击查看更多">...</span>`;
+                    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+                        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+                    }
+                    html += `<span class="page-ellipsis" onclick="toggleExpandPages()" title="点击查看更多">...</span>`;
+                    html += `<button class="page-btn" onclick="changePage(${totalPages})">${totalPages}</button>`;
+                }
+                
+                container.innerHTML = html;
+            }
+        }
+
+        function updatePageButtons() {
+            renderPageNumbers();
+
+            // 更新上一页/下一页按钮状态
+            const prevBtn = document.querySelector('.page-btn.prev');
+            const nextBtn = document.querySelector('.page-btn.next');
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+
+            // 更新页码信息显示
+            document.getElementById('pageInfo').textContent = `第 ${currentPage} / ${totalPages} 页，共 64 位咨询师`;
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePageButtons();
+        });
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>心灵驿站是专业的心理健康服务平台，致力于为用户提供优质的心理咨询和心理健康教育服务。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">心理咨询师</a></li>
+                        <li><a href="#">心理科普</a></li>
+                        <li><a href="#">在线咨询</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>客服热线：400-123-4567</p>
+                    <p>工作时间：9:00-21:00</p>
+                    <p>邮箱：support@xinling.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 心灵驿站 版权所有</p>
+            </div>
+        </div>
+    </footer>
+<script>
+        let currentCategory = '全部';
+        let currentMethod = '全部';
+        
+        function filterCounselors(button, type) {
+            // 移除同组按钮的active状态
+            const siblings = button.parentElement.querySelectorAll('.filter-btn');
+            siblings.forEach(btn => btn.classList.remove('active'));
+            // 添加当前按钮的active状态
+            button.classList.add('active');
+            
+            // 更新当前筛选条件
+            if (type === 'category') {
+                currentCategory = button.dataset.category;
+            } else {
+                currentMethod = button.dataset.method;
+            }
+            
+            // 筛选咨询师卡片
+            filterCounselorCards();
+        }
+        
+        function filterCounselorCards() {
+            const cards = document.querySelectorAll('.counselor-card');
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                // 检查擅长领域
+                const tags = card.querySelectorAll('.counselor-tags .tag');
+                let hasCategory = false;
+                
+                if (currentCategory === '全部') {
+                    hasCategory = true;
+                } else {
+                    tags.forEach(tag => {
+                        if (tag.textContent === currentCategory) {
+                            hasCategory = true;
+                        }
+                    });
+                }
+                
+                // 检查咨询方式
+                let hasMethod = false;
+                if (currentMethod === '全部') {
+                    hasMethod = true;
+                } else {
+                    const methods = card.dataset.methods ? card.dataset.methods.split(',') : [];
+                    hasMethod = methods.includes(currentMethod);
+                }
+                
+                // 显示或隐藏卡片
+                if (hasCategory && hasMethod) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // 更新显示数量
+            document.getElementById('counselorCount').textContent = visibleCount;
+            
+            // 显示无结果提示（如果没有匹配的咨询师）
+            const noResult = document.getElementById('noResult');
+            if (visibleCount === 0) {
+                if (!noResult) {
+                    const noResultElement = document.createElement('div');
+                    noResultElement.id = 'noResult';
+                    noResultElement.className = 'no-result';
+                    noResultElement.innerHTML = '<p>暂无匹配的心理咨询师</p>';
+                    document.querySelector('.counselor-grid').parentElement.appendChild(noResultElement);
+                } else {
+                    noResult.style.display = 'block';
+                }
+            } else if (noResult) {
+                noResult.style.display = 'none';
+            }
+        }
+    </script>
+    </body>
+</html>

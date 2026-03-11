@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵驿站 - 专业心理科普与咨询平台</title>
+    <link rel="stylesheet" href="counselors.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #fff;
+            color: #667eea;
+            padding: 16px 45px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #fff;
+            padding: 16px 45px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+        }
+
+        .stats-bar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-text {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .view-all {
+            color: #4A90E2;
+            text-decoration: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s;
+        }
+
+        .view-all:hover {
+            gap: 10px;
+        }
+
+        .view-all::after {
+            content: '>>';
+        }
+
+        .featured-counselors {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .featured-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .featured-card img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 4px solid #f0f7ff;
+        }
+
+        .featured-card h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .featured-card .exp {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .featured-card .tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .featured-card .rating {
+            color: #faad14;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .btn-card {
+            display: inline-block;
+            background: #4A90E2;
+            color: #fff;
+            padding: 10px 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .btn-card:hover {
+            background: #357abd;
+        }
+
+        .services {
+            background: #fff;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 50px 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: #fff;
+            font-size: 36px;
+        }
+
+        .service-item h3 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .service-item p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .articles-preview {
+            background: #f8f9fa;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .article-item {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+        }
+
+        .article-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #4A90E2;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .article-item h4 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .article-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .stats-grid {
+                gap: 30px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>心灵驿站</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="active">首页</a>
+                <a href="counselors.html">心理咨询师</a>
+                <a href="articles.html">心理科普</a>
+                <a href="consultation.html">在线咨询</a>
+                <a href="profile.html">个人中心</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>关爱心灵，从这里开始</h2>
+                <p>专业的心理咨询服务，温暖的心灵陪伴，让您重拾内心的平静与力量</p>
+                <div class="hero-buttons">
+                    <a href="counselors.html" class="btn-primary">立即咨询</a>
+                    <a href="assessment.html" class="btn-secondary">心理测评</a>
+                </div>
+            </div>
+            <div class="stats-bar">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-text">专业咨询师</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">50万+</div>
+                            <div class="stat-text">服务用户</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-text">好评率</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">24h</div>
+                            <div class="stat-text">全天候服务</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section services">
+        <div class="container">
+            <div class="section-header" style="justify-content: center; margin-bottom: 50px;">
+                <h2 class="section-title">我们的服务</h2>
+            </div>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="service-icon">💬</div>
+                    <h3>在线咨询</h3>
+                    <p>视频、语音、文字多种咨询方式，随时随地获得专业帮助，让心理健康触手可及</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">📚</div>
+                    <h3>心理科普</h3>
+                    <p>丰富的心理健康知识库，专业文章和科普内容，帮助您更好地了解自己和他人</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🧪</div>
+                    <h3>心理测评</h3>
+                    <p>专业的心理测评工具，科学评估您的心理状态，提供个性化的改善建议</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">👥</div>
+                    <h3>团体辅导</h3>
+                    <p>小组形式的团体辅导，在互动中获得成长和支持，建立健康的人际关系</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">推荐心理咨询师</h2>
+                <a href="counselors.html" class="view-all">查看全部心理咨询师</a>
+            </div>
+            <div class="featured-counselors">
+                <div class="featured-card">
+                    <img src="https://ui-avatars.com/api/?name=Li+Minghua&background=4A90E2&color=fff&size=110" alt="李医生">
+                    <h3>李明华</h3>
+                    <p class="exp">从业15年 | 3000+小时</p>
+                    <div class="tags">
+                        <span class="tag">情绪管理</span>
+                        <span class="tag">焦虑抑郁</span>
+                    </div>
+                    <div class="rating">⭐ 4.9分</div>
+                    <a href="counselors.html" class="btn-card">查看详情</a>
+                </div>
+                <div class="featured-card">
+                    <img src="https://ui-avatars.com/api/?name=Wang+Xuemei&background=E85D75&color=fff&size=110" alt="王医生">
+                    <h3>王雪梅</h3>
+                    <p class="exp">从业12年 | 2500+小时</p>
+                    <div class="tags">
+                        <span class="tag">婚姻家庭</span>
+                        <span class="tag">人际关系</span>
+                    </div>
+                    <div class="rating">⭐ 4.8分</div>
+                    <a href="counselors.html" class="btn-card">查看详情</a>
+                </div>
+                <div class="featured-card">
+                    <img src="https://ui-avatars.com/api/?name=Zhang+Wei&background=50C878&color=fff&size=110" alt="张医生">
+                    <h3>张伟</h3>
+                    <p class="exp">从业8年 | 1800+小时</p>
+                    <div class="tags">
+                        <span class="tag">青少年心理</span>
+                        <span class="tag">学业压力</span>
+                    </div>
+                    <div class="rating">⭐ 4.9分</div>
+                    <a href="counselors.html" class="btn-card">查看详情</a>
+                </div>
+                <div class="featured-card">
+                    <img src="https://ui-avatars.com/api/?name=Chen+Jing&background=9B59B6&color=fff&size=110" alt="陈医生">
+                    <h3>陈静</h3>
+                    <p class="exp">从业10年 | 2200+小时</p>
+                    <div class="tags">
+                        <span class="tag">创伤疗愈</span>
+                        <span class="tag">个人成长</span>
+                    </div>
+                    <div class="rating">⭐ 4.9分</div>
+                    <a href="counselors.html" class="btn-card">查看详情</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section articles-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">精选心理科普</h2>
+                <a href="articles.html" class="view-all">查看更多文章</a>
+            </div>
+            <div class="articles-grid">
+                <div class="article-item">
+                    <img src="https://images.unsplash.com/photo-1493836512294-502baa1986e2?w=350&h=180&fit=crop" alt="情绪管理">
+                    <div class="article-content">
+                        <span class="article-category">情绪管理</span>
+                        <h4>如何有效管理焦虑情绪？5个科学方法帮你找回平静</h4>
+                        <p>焦虑是现代人常见的心理问题，本文将介绍5种科学有效的焦虑管理方法...</p>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=350&h=180&fit=crop" alt="人际关系">
+                    <div class="article-content">
+                        <span class="article-category">人际关系</span>
+                        <h4>建立健康人际关系的7个心理学技巧</h4>
+                        <p>良好的人际关系是幸福生活的基础。本文从心理学角度出发，分享7个实用技巧...</p>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=350&h=180&fit=crop" alt="职场心理">
+                    <div class="article-content">
+                        <span class="article-category">职场心理</span>
+                        <h4>职场倦怠：识别信号与应对策略</h4>
+                        <p>职场倦怠已经成为现代职场人的普遍问题。了解倦怠的早期信号...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>准备好开始您的心灵之旅了吗？</h2>
+            <p>专业的心理咨询师团队随时为您服务，让心理健康触手可及</p>
+            <a href="counselors.html" class="btn-primary">立即预约咨询</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>心灵驿站是专业的心理健康服务平台，致力于为用户提供优质的心理咨询和心理健康教育服务。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="counselors.html">心理咨询师</a></li>
+                        <li><a href="articles.html">心理科普</a></li>
+                        <li><a href="consultation.html">在线咨询</a></li>
+                        <li><a href="assessment.html">心理测评</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>客服热线：400-123-4567</p>
+                    <p>工作时间：9:00-21:00</p>
+                    <p>邮箱：support@xinling.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 心灵驿站 版权所有</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

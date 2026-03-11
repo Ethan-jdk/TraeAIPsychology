@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心理科普 - 心灵驿站</title>
+    <link rel="stylesheet" href="counselors.css">
+    <style>
+        .articles-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .articles-header h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .articles-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .articles-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .articles-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .article-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            display: flex;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .article-image {
+            width: 280px;
+            height: 200px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .article-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #4A90E2;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .article-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .article-summary {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .category-list li:last-child {
+            border-bottom: none;
+        }
+
+        .category-list a {
+            color: #666;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .category-list a:hover {
+            color: #4A90E2;
+        }
+
+        .category-count {
+            background: #f0f0f0;
+            color: #999;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .hot-article {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .hot-article:last-child {
+            border-bottom: none;
+        }
+
+        .hot-rank {
+            width: 30px;
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #999;
+            flex-shrink: 0;
+        }
+
+        .hot-rank.top {
+            background: #ff6b6b;
+            color: #fff;
+        }
+
+        .hot-content {
+            flex: 1;
+        }
+
+        .hot-title {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .hot-views {
+            font-size: 12px;
+            color: #999;
+        }
+
+        @media (max-width: 968px) {
+            .articles-container {
+                grid-template-columns: 1fr;
+            }
+
+            .article-card {
+                flex-direction: column;
+            }
+
+            .article-image {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>心灵驿站</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html">首页</a>
+                <a href="counselors.html">心理咨询师</a>
+                <a href="articles.html" class="active">心理科普</a>
+                <a href="consultation.html">在线咨询</a>
+                <a href="profile.html">个人中心</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="articles-header">
+        <div class="container">
+            <h2>心理科普</h2>
+            <p>探索内心世界，学习心理健康知识，让心灵更加强大</p>
+        </div>
+    </section>
+
+    <main class="main">
+        <div class="container">
+            <div class="articles-container">
+                <div class="articles-list">
+                    <article class="article-card">
+                        <img src="https://images.unsplash.com/photo-1493836512294-502baa1986e2?w=280&h=200&fit=crop" alt="情绪管理" class="article-image">
+                        <div class="article-content">
+                            <span class="article-category">情绪管理</span>
+                            <h3 class="article-title">如何有效管理焦虑情绪？5个科学方法帮你找回平静</h3>
+                            <p class="article-summary">焦虑是现代人常见的心理问题，本文将介绍5种科学有效的焦虑管理方法，包括认知重构、正念冥想、运动疗法等，帮助你更好地应对生活中的压力和焦虑。</p>
+                            <div class="article-meta">
+                                <span>📅 2024-03-01</span>
+                                <span>👁️ 3,256次阅读</span>
+                                <span>❤️ 128赞</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=280&h=200&fit=crop" alt="人际关系" class="article-image">
+                        <div class="article-content">
+                            <span class="article-category">人际关系</span>
+                            <h3 class="article-title">建立健康人际关系的7个心理学技巧</h3>
+                            <p class="article-summary">良好的人际关系是幸福生活的基础。本文从心理学角度出发，分享7个实用技巧，帮助你改善与家人、朋友、同事的关系，建立更加和谐的人际网络。</p>
+                            <div class="article-meta">
+                                <span>📅 2024-02-28</span>
+                                <span>👁️ 2,891次阅读</span>
+                                <span>❤️ 96赞</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=280&h=200&fit=crop" alt="职场心理" class="article-image">
+                        <div class="article-content">
+                            <span class="article-category">职场心理</span>
+                            <h3 class="article-title">职场倦怠：识别信号与应对策略</h3>
+                            <p class="article-summary">职场倦怠已经成为现代职场人的普遍问题。了解倦怠的早期信号，掌握有效的应对方法，对于保持职业发展和身心健康至关重要。</p>
+                            <div class="article-meta">
+                                <span>📅 2024-02-25</span>
+                                <span>👁️ 4,123次阅读</span>
+                                <span>❤️ 215赞</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=280&h=200&fit=crop" alt="亲子教育" class="article-image">
+                        <div class="article-content">
+                            <span class="article-category">亲子教育</span>
+                            <h3 class="article-title">积极 parenting：培养孩子自信心的关键</h3>
+                            <p class="article-summary">自信心是孩子成长过程中最重要的心理品质之一。本文将介绍积极 parenting 的理念和方法，帮助父母在日常生活中培养孩子的自信心。</p>
+                            <div class="article-meta">
+                                <span>📅 2024-02-22</span>
+                                <span>👁️ 3,567次阅读</span>
+                                <span>❤️ 178赞</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=280&h=200&fit=crop" alt="睡眠健康" class="article-image">
+                        <div class="article-content">
+                            <span class="article-category">睡眠健康</span>
+                            <h3 class="article-title">改善睡眠质量的10个心理学建议</h3>
+                            <p class="article-summary">良好的睡眠是身心健康的基础。本文从心理学角度提供10个实用建议，帮助你建立健康的睡眠习惯，提高睡眠质量。</p>
+                            <div class="article-meta">
+                                <span>📅 2024-02-20</span>
+                                <span>👁️ 5,234次阅读</span>
+                                <span>❤️ 342赞</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=280&h=200&fit=crop" alt="正念冥想" class="article-image">
+                        <div class="article-content">
+                            <span class="article-category">正念冥想</span>
+                            <h3 class="article-title">初学者正念冥想指南：从入门到实践</h3>
+                            <p class="article-summary">正念冥想是一种有效的心理调节方法。本文为初学者提供详细的入门指南，包括基本概念、练习方法和常见问题的解答。</p>
+                            <div class="article-meta">
+                                <span>📅 2024-02-18</span>
+                                <span>👁️ 2,445次阅读</span>
+                                <span>❤️ 89赞</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <aside class="sidebar">
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">文章分类</h3>
+                        <ul class="category-list">
+                            <li><a href="#">情绪管理 <span class="category-count">28</span></a></li>
+                            <li><a href="#">人际关系 <span class="category-count">24</span></a></li>
+                            <li><a href="#">职场心理 <span class="category-count">19</span></a></li>
+                            <li><a href="#">亲子教育 <span class="category-count">16</span></a></li>
+                            <li><a href="#">婚姻家庭 <span class="category-count">15</span></a></li>
+                            <li><a href="#">个人成长 <span class="category-count">22</span></a></li>
+                            <li><a href="#">心理健康 <span class="category-count">31</span></a></li>
+                            <li><a href="#">心理测评 <span class="category-count">12</span></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">热门文章</h3>
+                        <div class="hot-articles">
+                            <div class="hot-article">
+                                <span class="hot-rank top">1</span>
+                                <div class="hot-content">
+                                    <p class="hot-title">抑郁症的早期症状与自我检测</p>
+                                    <span class="hot-views">8,234次阅读</span>
+                                </div>
+                            </div>
+                            <div class="hot-article">
+                                <span class="hot-rank top">2</span>
+                                <div class="hot-content">
+                                    <p class="hot-title">如何与青春期的孩子有效沟通</p>
+                                    <span class="hot-views">6,891次阅读</span>
+                                </div>
+                            </div>
+                            <div class="hot-article">
+                                <span class="hot-rank top">3</span>
+                                <div class="hot-content">
+                                    <p class="hot-title">社交恐惧症：你并不孤单</p>
+                                    <span class="hot-views">5,456次阅读</span>
+                                </div>
+                            </div>
+                            <div class="hot-article">
+                                <span class="hot-rank">4</span>
+                                <div class="hot-content">
+                                    <p class="hot-title">压力管理的艺术：找到你的平衡点</p>
+                                    <span class="hot-views">4,123次阅读</span>
+                                </div>
+                            </div>
+                            <div class="hot-article">
+                                <span class="hot-rank">5</span>
+                                <div class="hot-content">
+                                    <p class="hot-title">建立健康边界的重要性</p>
+                                    <span class="hot-views">3,987次阅读</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">订阅我们</h3>
+                        <p style="color: #666; font-size: 14px; margin-bottom: 15px;">订阅心理健康资讯，每周获取精选文章</p>
+                        <input type="email" placeholder="输入您的邮箱" style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 10px;">
+                        <button style="width: 100%; padding: 12px; background: #4A90E2; color: #fff; border: none; border-radius: 8px; cursor: pointer;">立即订阅</button>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>心灵驿站是专业的心理健康服务平台，致力于为用户提供优质的心理咨询和心理健康教育服务。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="counselors.html">心理咨询师</a></li>
+                        <li><a href="articles.html">心理科普</a></li>
+                        <li><a href="consultation.html">在线咨询</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>客服热线：400-123-4567</p>
+                    <p>工作时间：9:00-21:00</p>
+                    <p>邮箱：support@xinling.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 心灵驿站 版权所有</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

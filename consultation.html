@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线咨询 - 心灵驿站</title>
+    <link rel="stylesheet" href="counselors.css">
+    <style>
+        .consultation-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .consultation-header h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .consultation-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .consultation-types {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 50px;
+            padding: 60px 40px;
+            background: #f8f9fa;
+        }
+
+        .consultation-card {
+            width: 320px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1100px) {
+            .consultation-types {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+            
+            .consultation-card {
+                width: calc(50% - 15px);
+                min-width: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .consultation-types {
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 20px;
+            }
+            
+            .consultation-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        .consultation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .consultation-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 40px;
+        }
+
+        .consultation-card.video .consultation-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .consultation-card.voice .consultation-icon {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .consultation-card.text .consultation-icon {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .consultation-card h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .consultation-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .consultation-card .price {
+            font-size: 28px;
+            color: #ff6b6b;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .consultation-card .price span {
+            font-size: 14px;
+            color: #999;
+            font-weight: normal;
+        }
+
+        .btn-choose {
+            background: #4A90E2;
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-choose:hover {
+            background: #357abd;
+        }
+
+        .process-section {
+            background: #fff;
+            padding: 60px 0;
+        }
+
+        .process-title {
+            text-align: center;
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 50px;
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 100px;
+            right: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: #fff;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #667eea;
+            margin: 0 auto 15px;
+        }
+
+        .step-title {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .faq-section {
+            padding: 60px 0;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: #4A90E2;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 25px 20px;
+            max-height: 200px;
+        }
+
+        .online-counselors {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #333;
+        }
+
+        .view-all {
+            color: #4A90E2;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .counselor-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 1200px) {
+            .counselor-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .counselor-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .counselor-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+        }
+
+        .counselor-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .counselor-item img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #4A90E2;
+        }
+
+        .counselor-item h4 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .counselor-item .status {
+            display: inline-block;
+            padding: 3px 12px;
+            background: #52c41a;
+            color: #fff;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .counselor-item .tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .counselor-item .tag {
+            background: #f0f7ff;
+            color: #4A90E2;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .btn-consult {
+            background: #4A90E2;
+            color: #fff;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .btn-consult:hover {
+            background: #357abd;
+        }
+
+        @media (max-width: 768px) {
+            .process-steps {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>心灵驿站</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html">首页</a>
+                <a href="counselors.html">心理咨询师</a>
+                <a href="articles.html">心理科普</a>
+                <a href="consultation.html" class="active">在线咨询</a>
+                <a href="profile.html">个人中心</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="consultation-header">
+        <div class="container">
+            <h2>在线咨询</h2>
+            <p>选择适合您的咨询方式，开启心灵疗愈之旅</p>
+        </div>
+    </section>
+
+    <section class="consultation-types">
+        <div class="consultation-card video">
+            <div class="consultation-icon">📹</div>
+            <h3>视频咨询</h3>
+            <p>面对面视频沟通，获得最真实的咨询体验<br>适合需要深度交流和情感支持的用户</p>
+            <div class="price">¥200<span>起/次</span></div>
+            <button class="btn-choose">选择视频咨询</button>
+        </div>
+
+        <div class="consultation-card voice">
+            <div class="consultation-icon">📞</div>
+            <h3>语音咨询</h3>
+            <p>电话语音沟通，保护隐私的同时获得专业帮助<br>适合希望保持匿名的用户</p>
+            <div class="price">¥150<span>起/次</span></div>
+            <button class="btn-choose">选择语音咨询</button>
+        </div>
+
+        <div class="consultation-card text">
+            <div class="consultation-icon">💬</div>
+            <h3>文字咨询</h3>
+            <p>在线文字交流，随时记录和回顾咨询内容<br>适合时间不固定或偏好文字表达的用户</p>
+            <div class="price">¥100<span>起/次</span></div>
+            <button class="btn-choose">选择文字咨询</button>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="container">
+            <h2 class="process-title">咨询流程</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">选择咨询师</div>
+                    <div class="step-desc">浏览咨询师资料<br>选择合适的专家</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">预约时间</div>
+                    <div class="step-desc">选择咨询方式<br>预约咨询时段</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">在线支付</div>
+                    <div class="step-desc">安全便捷支付<br>多种支付方式</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">开始咨询</div>
+                    <div class="step-desc">准时开始咨询<br>获得专业帮助</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="online-counselors">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">在线咨询师</h2>
+                <a href="counselors.html" class="view-all">查看全部 ></a>
+            </div>
+            <div class="counselor-list">
+                <div class="counselor-item">
+                    <img src="https://ui-avatars.com/api/?name=Li+Minghua&background=4A90E2&color=fff&size=90" alt="李明华">
+                    <h4>李明华</h4>
+                    <span class="status">在线</span>
+                    <div class="tags">
+                        <span class="tag">情绪管理</span>
+                        <span class="tag">焦虑抑郁</span>
+                    </div>
+                    <button class="btn-consult">立即咨询</button>
+                </div>
+                <div class="counselor-item">
+                    <img src="https://ui-avatars.com/api/?name=Wang+Xuemei&background=E85D75&color=fff&size=90" alt="王雪梅">
+                    <h4>王雪梅</h4>
+                    <span class="status">在线</span>
+                    <div class="tags">
+                        <span class="tag">婚姻家庭</span>
+                        <span class="tag">人际关系</span>
+                    </div>
+                    <button class="btn-consult">立即咨询</button>
+                </div>
+                <div class="counselor-item">
+                    <img src="https://ui-avatars.com/api/?name=Zhang+Wei&background=50C878&color=fff&size=90" alt="张伟">
+                    <h4>张伟</h4>
+                    <span class="status">在线</span>
+                    <div class="tags">
+                        <span class="tag">青少年心理</span>
+                        <span class="tag">学业压力</span>
+                    </div>
+                    <button class="btn-consult">立即咨询</button>
+                </div>
+                <div class="counselor-item">
+                    <img src="https://ui-avatars.com/api/?name=Chen+Jing&background=9B59B6&color=fff&size=90" alt="陈静">
+                    <h4>陈静</h4>
+                    <span class="status">在线</span>
+                    <div class="tags">
+                        <span class="tag">创伤疗愈</span>
+                        <span class="tag">个人成长</span>
+                    </div>
+                    <button class="btn-consult">立即咨询</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="faq-title">常见问题</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">在线咨询是否保密？</div>
+                    <div class="faq-answer">我们严格遵守心理咨询保密原则，所有咨询内容都会严格保密。平台采用加密技术保护您的隐私，未经您的同意，不会向任何第三方透露您的信息。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如何选择合适的咨询师？</div>
+                    <div class="faq-answer">您可以根据咨询师的专业领域、从业经验、用户评价等信息进行选择。建议先阅读咨询师的简介和擅长方向，选择与您问题最匹配的专家。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">咨询时长是多久？</div>
+                    <div class="faq-answer">标准咨询时长为50分钟/次。根据具体情况，咨询师可能会适当调整时间。建议在预约时与咨询师确认具体的咨询时长安排。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">可以取消或改期吗？</div>
+                    <div class="faq-answer">可以的。如需取消或改期，请至少提前24小时联系客服或直接在平台上操作。临时取消可能会产生一定的费用，具体请查看我们的取消政策。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">咨询效果如何保证？</div>
+                    <div class="faq-answer">我们的咨询师都经过严格筛选和专业认证。如果您对咨询效果不满意，可以联系客服反馈，我们会协助您更换咨询师或提供其他解决方案。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>心灵驿站是专业的心理健康服务平台，致力于为用户提供优质的心理咨询和心理健康教育服务。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="counselors.html">心理咨询师</a></li>
+                        <li><a href="articles.html">心理科普</a></li>
+                        <li><a href="consultation.html">在线咨询</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>客服热线：400-123-4567</p>
+                    <p>工作时间：9:00-21:00</p>
+                    <p>邮箱：support@xinling.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 心灵驿站 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

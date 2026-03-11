@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 心灵驿站</title>
+    <link rel="stylesheet" href="counselors.css">
+    <style>
+        .profile-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 60px 0 100px;
+        }
+
+        .profile-user {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+        }
+
+        .profile-info h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .profile-info p {
+            opacity: 0.9;
+            font-size: 15px;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-sidebar {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            height: fit-content;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            color: #666;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: #f0f7ff;
+            color: #4A90E2;
+        }
+
+        .sidebar-menu .icon {
+            font-size: 20px;
+        }
+
+        .profile-content {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .content-title {
+            font-size: 22px;
+            color: #333;
+        }
+
+        .appointments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .appointment-card {
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.3s;
+        }
+
+        .appointment-card:hover {
+            border-color: #4A90E2;
+        }
+
+        .appointment-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .appointment-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .appointment-details h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .appointment-details p {
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .appointment-status {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .status-upcoming {
+            background: #e3f2fd;
+            color: #4A90E2;
+        }
+
+        .status-completed {
+            background: #e8f5e9;
+            color: #4caf50;
+        }
+
+        .status-cancelled {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .appointment-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid #e0e0e0;
+            background: #fff;
+            color: #666;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .btn-action:hover {
+            border-color: #4A90E2;
+            color: #4A90E2;
+        }
+
+        .btn-primary-action {
+            background: #4A90E2;
+            color: #fff;
+            border-color: #4A90E2;
+        }
+
+        .btn-primary-action:hover {
+            background: #357abd;
+        }
+
+        .records-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .record-card {
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .record-card:hover {
+            border-color: #4A90E2;
+        }
+
+        .record-info {
+            margin-bottom: 10px;
+        }
+
+        .record-info h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .record-info p {
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .record-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .btn-save {
+            padding: 12px 30px;
+            background: #4A90E2;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-save:hover {
+            background: #357abd;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4A90E2;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-save {
+            background: #4A90E2;
+            color: #fff;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-save:hover {
+            background: #357abd;
+        }
+
+        .records-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .record-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .record-date {
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .record-title {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .record-score {
+            font-size: 24px;
+            color: #4A90E2;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .record-desc {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 968px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-sidebar {
+                order: 2;
+            }
+
+            .profile-user {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>心灵驿站</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html">首页</a>
+                <a href="counselors.html">心理咨询师</a>
+                <a href="articles.html">心理科普</a>
+                <a href="consultation.html">在线咨询</a>
+                <a href="profile.html" class="active">个人中心</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="profile-header">
+        <div class="container">
+            <div class="profile-user">
+                <img src="https://ui-avatars.com/api/?name=User&background=667eea&color=fff&size=120" alt="用户头像" class="profile-avatar">
+                <div class="profile-info">
+                    <h2>张小雅</h2>
+                    <p>会员等级：VIP会员 | 注册时间：2023-06-15</p>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">咨询次数</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">收藏文章</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">完成测评</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">关注咨询师</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main">
+        <div class="container">
+            <div class="profile-container">
+                <aside class="profile-sidebar">
+                    <ul class="sidebar-menu">
+                        <li><a href="#appointments" class="active"><span class="icon">📅</span> 我的预约</a></li>
+                        <li><a href="#records"><span class="icon">📋</span> 咨询记录</a></li>
+                        <li><a href="#assessments"><span class="icon">📊</span> 测评记录</a></li>
+                        <li><a href="#favorites"><span class="icon">❤️</span> 我的收藏</a></li>
+                        <li><a href="#settings"><span class="icon">⚙️</span> 账号设置</a></li>
+                        <li><a href="#"><span class="icon">🚪</span> 退出登录</a></li>
+                    </ul>
+                </aside>
+
+                <div class="profile-content">
+                    <div id="appointments" class="content-section">
+                        <div class="content-header">
+                            <h3 class="content-title">我的预约</h3>
+                            <a href="counselors.html" style="color: #4A90E2; text-decoration: none;">去预约 ></a>
+                        </div>
+                        <div class="appointments-list">
+                            <div class="appointment-card">
+                                <div class="appointment-info">
+                                    <img src="https://ui-avatars.com/api/?name=Li+Minghua&background=4A90E2&color=fff&size=60" alt="李明华">
+                                    <div class="appointment-details">
+                                        <h4>李明华 主任医师</h4>
+                                        <p>📅 2024-03-05 14:00-14:50</p>
+                                        <p>📹 视频咨询</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <span class="appointment-status status-upcoming">即将开始</span>
+                                    <div class="appointment-actions">
+                                        <button class="btn-action btn-primary-action">进入咨询</button>
+                                        <button class="btn-action">取消</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="appointment-card">
+                                <div class="appointment-info">
+                                    <img src="https://ui-avatars.com/api/?name=Wang+Xuemei&background=E85D75&color=fff&size=60" alt="王雪梅">
+                                    <div class="appointment-details">
+                                        <h4>王雪梅 副主任医师</h4>
+                                        <p>📅 2024-02-28 10:00-10:50</p>
+                                        <p>📞 语音咨询</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <span class="appointment-status status-completed">已完成</span>
+                                    <div class="appointment-actions">
+                                        <button class="btn-action">查看记录</button>
+                                        <button class="btn-action">评价</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="appointment-card">
+                                <div class="appointment-info">
+                                    <img src="https://ui-avatars.com/api/?name=Zhang+Wei&background=50C878&color=fff&size=60" alt="张伟">
+                                    <div class="appointment-details">
+                                        <h4>张伟 国家二级心理咨询师</h4>
+                                        <p>📅 2024-02-20 16:00-16:50</p>
+                                        <p>💬 文字咨询</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <span class="appointment-status status-cancelled">已取消</span>
+                                    <div class="appointment-actions">
+                                        <button class="btn-action">重新预约</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="records" class="content-section" style="display: none;">
+                        <div class="content-header">
+                            <h3 class="content-title">咨询记录</h3>
+                        </div>
+                        <div class="records-grid">
+                            <div class="record-card">
+                                <div class="record-info">
+                                    <h4>李明华 主任医师</h4>
+                                    <p>📅 2024-02-28 10:00-10:50</p>
+                                    <p>📞 语音咨询</p>
+                                </div>
+                                <div class="record-desc">
+                                    <p>本次咨询主要讨论了工作压力和情绪管理问题，咨询师提供了有效的应对策略，感觉收获很大。</p>
+                                </div>
+                            </div>
+                            <div class="record-card">
+                                <div class="record-info">
+                                    <h4>王雪梅 副主任医师</h4>
+                                    <p>📅 2024-02-15 16:00-16:50</p>
+                                    <p>💬 文字咨询</p>
+                                </div>
+                                <div class="record-desc">
+                                    <p>关于人际关系问题的咨询，咨询师分析了我的沟通模式，给出了改进建议。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="assessments" class="content-section" style="display: none;">
+                        <div class="content-header">
+                            <h3 class="content-title">测评记录</h3>
+                            <a href="assessment.html" style="color: #4A90E2; text-decoration: none;">去测评 ></a>
+                        </div>
+                        <div class="records-grid">
+                            <div class="record-card">
+                                <div class="record-info">
+                                    <h4>情绪健康测评</h4>
+                                    <p>📅 2024-03-01</p>
+                                    <p>📊 结果：良好</p>
+                                </div>
+                                <div class="record-desc">
+                                    <p>情绪状态稳定，建议保持当前的生活方式和心态。</p>
+                                </div>
+                            </div>
+                            <div class="record-card">
+                                <div class="record-info">
+                                    <h4>压力水平测评</h4>
+                                    <p>📅 2024-02-15</p>
+                                    <p>📊 结果：轻度压力</p>
+                                </div>
+                                <div class="record-desc">
+                                    <p>压力水平在正常范围内，建议适当放松和运动。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="favorites" class="content-section" style="display: none;">
+                        <div class="content-header">
+                            <h3 class="content-title">我的收藏</h3>
+                        </div>
+                        <div class="records-grid">
+                            <div class="record-card">
+                                <div class="record-info">
+                                    <h4>改善睡眠质量的10个心理学建议</h4>
+                                    <p>📅 2024-02-20</p>
+                                    <p>📚 心理科普</p>
+                                </div>
+                                <div class="record-desc">
+                                    <p>关于睡眠健康的实用建议，内容非常有帮助。</p>
+                                </div>
+                            </div>
+                            <div class="record-card">
+                                <div class="record-info">
+                                    <h4>如何应对职场压力</h4>
+                                    <p>📅 2024-02-10</p>
+                                    <p>📚 心理科普</p>
+                                </div>
+                                <div class="record-desc">
+                                    <p>职场压力管理的有效方法，对我的工作很有帮助。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="settings" class="content-section" style="display: none;">
+                        <div class="content-header">
+                            <h3 class="content-title">账号设置</h3>
+                        </div>
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>昵称</label>
+                                    <input type="text" value="张小雅">
+                                </div>
+                                <div class="form-group">
+                                    <label>真实姓名</label>
+                                    <input type="text" value="张雅">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>手机号</label>
+                                    <input type="tel" value="138****8888">
+                                </div>
+                                <div class="form-group">
+                                    <label>邮箱</label>
+                                    <input type="email" value="zhangxiaoya@email.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>性别</label>
+                                <select>
+                                    <option value="female" selected>女</option>
+                                    <option value="male">男</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>个人简介</label>
+                                <textarea rows="4" placeholder="介绍一下自己..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-save">保存修改</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于我们</h4>
+                    <p>心灵驿站是专业的心理健康服务平台，致力于为用户提供优质的心理咨询和心理健康教育服务。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="counselors.html">心理咨询师</a></li>
+                        <li><a href="articles.html">心理科普</a></li>
+                        <li><a href="consultation.html">在线咨询</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>客服热线：400-123-4567</p>
+                    <p>工作时间：9:00-21:00</p>
+                    <p>邮箱：support@xinling.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 心灵驿站 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuLinks = document.querySelectorAll('.sidebar-menu a');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有导航项的active状态
+                    menuLinks.forEach(item => item.classList.remove('active'));
+                    // 添加当前导航项的active状态
+                    this.classList.add('active');
+                    
+                    // 获取目标内容ID
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    // 隐藏所有内容区域
+                    contentSections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // 显示目标内容区域
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
